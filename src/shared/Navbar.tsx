@@ -12,7 +12,10 @@ type Props = {
 const Navbar = ({ navigation }: Props) => {
   return (
     <SafeAreaView
-      style={tw`shadow-lg flex-row items-center px-6 py-2 text-black bg-blue-600 justify-between`}
+      style={[
+        tw`shadow-lg absolute top-0 left-0 right-0 flex-row items-center px-6 py-2 h-20 z-50 justify-between`,
+        { backgroundColor: "#0E7490" },
+      ]}
     >
       <TouchableOpacity
         activeOpacity={0.7}
@@ -26,10 +29,10 @@ const Navbar = ({ navigation }: Props) => {
       <View style={tw`items-center flex-row`}>
         <Icon
           onPress={() => navigation.navigate("Edit")}
-          style={tw`mr-3`}
+          style={tw`mr-5 pr-2 border-r-2 border-white`}
           name="plus"
           color={"white"}
-          size={36}
+          size={42}
         />
         <Button text="Logout" onPress={() => navigation.navigate("Login")} />
       </View>

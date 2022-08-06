@@ -9,9 +9,10 @@ type Props = {
   note: INote;
   previousNote: INote | null;
   navigation: any;
+  isLastItem: boolean;
 };
 
-const NotePreview = ({ note, previousNote, navigation }: Props) => {
+const NotePreview = ({ note, previousNote, navigation, isLastItem }: Props) => {
   const isInitialNote: boolean = note._id === INITIAL_NOTE_ID;
   const isTheSameDate: boolean =
     new Date(note.startDate).toDateString() ===
@@ -19,12 +20,13 @@ const NotePreview = ({ note, previousNote, navigation }: Props) => {
   return (
     <View>
       <View>
-        {!isTheSameDate && (
-          <Text style={tw`text-lg text-blue-300 mb-1`}>
+        {!isTheSameDate ? (
+          <Text style={tw`text-lg text-blue-600 tracking-wide mb-1`}>
             {new Date(note.startDate).toDateString()}
           </Text>
-        )}
+        ) : null}
         <NoteBody
+          isLastItem={isLastItem}
           isTheSameDate={isTheSameDate}
           onPress={() => !isInitialNote && navigation.navigate("Edit")}
           note={note}

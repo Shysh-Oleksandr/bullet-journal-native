@@ -21,6 +21,7 @@ type Props = {
   note: INote;
   isTheSameDate: boolean;
   showImage?: boolean;
+  isLastItem: boolean;
 };
 
 const NoteBody = ({
@@ -29,6 +30,7 @@ const NoteBody = ({
   note,
   showImage,
   isTheSameDate,
+  isLastItem,
 }: Props) => {
   const noteTime =
     dateDiffInDays(new Date(note.startDate), new Date(note.endDate)) + 1;
@@ -41,18 +43,18 @@ const NoteBody = ({
         onPress={onPress}
         style={[
           { backgroundColor: note.color },
-          tw`rounded-md flex-row items-center justify-between shadow-md pb-2 pt-3 px-4`,
+          tw`rounded-md flex-row items-center justify-between shadow-lg pb-2 pt-3 px-4`,
         ]}
       >
-        <View>
-          <View>
+        <View style={tw`w-full`}>
+          <View style={tw`w-full`}>
             <Text
               numberOfLines={1}
               style={[{ color: textColor }, tw`text-2xl font-bold`]}
             >
               {note.title}
             </Text>
-            {note.content ? (
+            {note.content && !note.isEndNote ? (
               <RenderHtml
                 contentWidth={width}
                 baseStyle={{ color: textColor, fontSize: 17 }}
@@ -71,12 +73,12 @@ const NoteBody = ({
             }`}
           >
             <View style={tw`flex-row items-center flex-wrap`}>
-              {note.isStarred && (
+              {note.isStarred ? (
                 <NoteInfo
                   text={<Icon name="star" size={20} />}
                   color={note.color}
                 />
-              )}
+              ) : null}
               <NoteInfo
                 text={`${note.rating}/10`}
                 color={note.color}
@@ -101,31 +103,31 @@ const NoteBody = ({
                 );
               })}
             </View>
-            {noteTime >= 2 && (
-              <View style={tw`absolute bottom-0 right-0 z-10`}>
-                <NoteInfo
-                  text={`${noteTime} days`}
-                  color={note.color}
-                  className={tw`${note.isEndNote ? "font-bold" : ""}`}
-                />
-              </View>
-            )}
-            {note.isEndNote && (
-              <View style={tw`absolute top-0 right-0 z-10`}>
-                <NoteInfo
-                  text="Ended"
-                  color={note.color}
-                  className={tw`font-bold`}
-                />
-              </View>
-            )}
           </View>
+          {noteTime >= 2 ? (
+            <View style={tw`absolute bottom-0 right-0 z-10`}>
+              <NoteInfo
+                text={`${noteTime} days`}
+                color={note.color}
+                className={tw`${note.isEndNote ? "font-bold" : ""}`}
+              />
+            </View>
+          ) : null}
+          {note.isEndNote ? (
+            <View style={tw`absolute top-0 right-0 z-10`}>
+              <NoteInfo
+                text="Ended"
+                color={note.color}
+                className={tw`font-bold`}
+              />
+            </View>
+          ) : null}
         </View>
         {note.image && showImage && note.isEndNote ? (
           <Image source={{ uri: note.image }} />
         ) : null}
       </TouchableOpacity>
-      <NoteSeparator />
+      {!isLastItem ? <NoteSeparator /> : null}
     </View>
   );
 };

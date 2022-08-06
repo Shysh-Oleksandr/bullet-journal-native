@@ -5948,43 +5948,43 @@
   },
   "bg-blue-50": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(239, 246, 255, var(--tw-bg-opacity))"
+    "backgroundColor": "#ECFEFF"
   },
   "bg-blue-100": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(219, 234, 254, var(--tw-bg-opacity))"
+    "backgroundColor": "#CFFAFE"
   },
   "bg-blue-200": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(191, 219, 254, var(--tw-bg-opacity))"
+    "backgroundColor": "#A5F3FC"
   },
   "bg-blue-300": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(147, 197, 253, var(--tw-bg-opacity))"
+    "backgroundColor": "#67E8F9"
   },
   "bg-blue-400": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(96, 165, 250, var(--tw-bg-opacity))"
+    "backgroundColor": "#22D3EE"
   },
   "bg-blue-500": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(59, 130, 246, var(--tw-bg-opacity))"
+    "backgroundColor": "#06B6D4"
   },
   "bg-blue-600": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(37, 99, 235, var(--tw-bg-opacity))"
+    "backgroundColor": "#0891B2"
   },
   "bg-blue-700": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(29, 78, 216, var(--tw-bg-opacity))"
+    "backgroundColor": "#0E7490"
   },
   "bg-blue-800": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(30, 64, 175, var(--tw-bg-opacity))"
+    "backgroundColor": "#155E75"
   },
   "bg-blue-900": {
     "--tw-bg-opacity": 1,
-    "backgroundColor": "rgba(30, 58, 138, var(--tw-bg-opacity))"
+    "backgroundColor": "#164E63"
   },
   "bg-indigo-50": {
     "--tw-bg-opacity": 1,
@@ -7416,43 +7416,43 @@
   },
   "text-blue-50": {
     "--tw-text-opacity": 1,
-    "color": "rgba(239, 246, 255, var(--tw-text-opacity))"
+    "color": "#ECFEFF"
   },
   "text-blue-100": {
     "--tw-text-opacity": 1,
-    "color": "rgba(219, 234, 254, var(--tw-text-opacity))"
+    "color": "#CFFAFE"
   },
   "text-blue-200": {
     "--tw-text-opacity": 1,
-    "color": "rgba(191, 219, 254, var(--tw-text-opacity))"
+    "color": "#A5F3FC"
   },
   "text-blue-300": {
     "--tw-text-opacity": 1,
-    "color": "rgba(147, 197, 253, var(--tw-text-opacity))"
+    "color": "#67E8F9"
   },
   "text-blue-400": {
     "--tw-text-opacity": 1,
-    "color": "rgba(96, 165, 250, var(--tw-text-opacity))"
+    "color": "#22D3EE"
   },
   "text-blue-500": {
     "--tw-text-opacity": 1,
-    "color": "rgba(59, 130, 246, var(--tw-text-opacity))"
+    "color": "#06B6D4"
   },
   "text-blue-600": {
     "--tw-text-opacity": 1,
-    "color": "rgba(37, 99, 235, var(--tw-text-opacity))"
+    "color": "#0891B2"
   },
   "text-blue-700": {
     "--tw-text-opacity": 1,
-    "color": "rgba(29, 78, 216, var(--tw-text-opacity))"
+    "color": "#0E7490"
   },
   "text-blue-800": {
     "--tw-text-opacity": 1,
-    "color": "rgba(30, 64, 175, var(--tw-text-opacity))"
+    "color": "#155E75"
   },
   "text-blue-900": {
     "--tw-text-opacity": 1,
-    "color": "rgba(30, 58, 138, var(--tw-text-opacity))"
+    "color": "#164E63"
   },
   "text-indigo-50": {
     "--tw-text-opacity": 1,
