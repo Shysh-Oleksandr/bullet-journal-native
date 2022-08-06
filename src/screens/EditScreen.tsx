@@ -1,14 +1,15 @@
 import { Button, StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import Navbar from "../shared/Navbar";
 import { RootTabScreenProps } from "../types";
 
-export default function TabTwoScreen({
+export default function EditScreen({
   navigation,
 }: RootTabScreenProps<"TabTwo">) {
   return (
-    <View style={styles.container}>
+    <View>
+      <Navbar navigation={navigation} />
       <Text style={styles.title}>Add note</Text>
       <View
         style={styles.separator}
@@ -21,11 +22,6 @@ export default function TabTwoScreen({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
