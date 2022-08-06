@@ -11,7 +11,7 @@ export default function HomeScreen({
   return (
     <View>
       <Navbar navigation={navigation} />
-      <Notes />
+      <Notes navigation={navigation} />
     </View>
   );
 }
