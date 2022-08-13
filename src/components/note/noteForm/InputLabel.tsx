@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import tw from "../../../../tailwind";
 
 interface InputLabelProps {
@@ -9,15 +9,28 @@ interface InputLabelProps {
 
 const InputLabel = ({ className, text }: InputLabelProps) => {
   return (
-    <Text
-      style={[
-        tw`text-xs z-10 block text-left absolute -bottom-4 left-1/2`,
-        { transform: [{ translateX: -1 / 2 }] },
-        className,
-      ]}
+    <View
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: -19,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
-      {text}
-    </Text>
+      <Text
+        style={[
+          tw`text-xs z-10`,
+          {
+            fontSize: 13,
+          },
+          className,
+        ]}
+      >
+        {text}
+      </Text>
+    </View>
   );
 };
 

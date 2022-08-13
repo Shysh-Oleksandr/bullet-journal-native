@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import { Text, Touchable, TouchableOpacity, View } from "react-native";
+import { RichEditor } from "react-native-pell-rich-editor";
 
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/OcticonsIcon";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import OcticonsIcon from "react-native-vector-icons/Octicons";
@@ -19,6 +20,7 @@ import {
 import useDebounce from "../../../hooks/useDebounce";
 import ICustomLabel from "../../../interfaces/customLabel";
 import INote from "../../../interfaces/note";
+import Input from "../../../shared/UI/Input";
 import Loading from "../../../shared/UI/Loading";
 import { defaultNoteTypes } from "../../../utils/data";
 import { getContentWords, INITIAL_NOTE_ID } from "../../../utils/functions";
@@ -62,6 +64,8 @@ const NoteForm = ({
   const [isStarred, setIsStarred] = useState<boolean>(false);
   const [prevNote, setPrevNote] = useState<INote | null>(null);
   const [nextNote, setNextNote] = useState<INote | null>(null);
+
+  const richText = useRef() as MutableRefObject<RichEditor>;
 
   const debouncedDelay = 2000;
 
@@ -327,15 +331,37 @@ const NoteForm = ({
 
   if (true) {
     return (
-      <View style={tw`mx-4 flex-1`}>
+      <TouchableOpacity
+        activeOpacity={1}
+        style={tw`mx-4 flex-1`}
+        onPress={() =>
+          richText.current?.isKeyboardOpen &&
+          richText.current?.dismissKeyboard()
+        }
+      >
+        <Input
+          value={title}
+          placeholder="Title"
+          onChange={(text) => setTitle(text)}
+        />
+        <View style={tw`flex-row items-center justify-between`}>
+          <NoteDate
+            date={startDate}
+            isStartDate={true}
+            setDate={setStartDate}
+          />
+          <OcticonsIcon name="dash" size={35} />
+          <NoteDate date={endDate} isStartDate={false} setDate={setEndDate} />
+        </View>
         <NoteContentEditor
+          richText={richText}
           setContent={setContent}
           setImage={setImage}
           isShort={isShort}
           disabled={false}
         />
         <SaveButton text="Save" disabled={false} onPress={() => 3} />
-      </View>
+      </TouchableOpacity>
     );
   }
 

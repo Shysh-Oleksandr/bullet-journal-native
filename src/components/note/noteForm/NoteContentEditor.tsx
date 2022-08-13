@@ -22,6 +22,7 @@ interface NoteContentEditorProps {
   setImage: (value: React.SetStateAction<string>) => void;
   disabled?: boolean;
   isShort?: boolean;
+  richText: React.MutableRefObject<RichEditor>;
 }
 
 const NoteContentEditor = ({
@@ -29,9 +30,8 @@ const NoteContentEditor = ({
   setImage,
   isShort,
   disabled,
+  richText,
 }: NoteContentEditorProps) => {
-  const richText = useRef() as MutableRefObject<RichEditor>;
-
   const [descHTML, setDescHTML] = useState<string>("");
   const [showDescError, setShowDescError] = useState<boolean>(false);
 
@@ -77,12 +77,6 @@ const NoteContentEditor = ({
           style={tw`flex-1 relative`}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-          {/* <Pressable onPress={() => richText.current?.dismissKeyboard()}>
-            <Text style={styles.headerStyle}>Your awesome Content</Text>
-            <View style={styles.htmlBoxStyle}>
-              <Text>{descHTML}</Text>
-            </View>
-          </Pressable> */}
           <View style={styles.richTextContainer}>
             <RichEditor
               useContainer={true}

@@ -1,41 +1,53 @@
-import React from 'react';
-import { BiCalendarAlt } from 'react-icons/bi';
-import InputLabel from './InputLabel';
+import React, { useState } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import tw from "../../../../tailwind";
+import InputLabel from "./InputLabel";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 
 interface NoteDateProps {
-    date: number;
-    setDate: (value: React.SetStateAction<number>) => void;
-    isStartDate: boolean;
-    disabled?: boolean;
-    inputClassname?: string;
-    refToClick?: React.MutableRefObject<HTMLDivElement>;
+  date: number;
+  setDate: (value: React.SetStateAction<number>) => void;
+  isStartDate: boolean;
+  disabled?: boolean;
+  inputClassname?: any;
 }
 
-const NoteDate = ({ date, setDate, isStartDate, inputClassname, refToClick, disabled }: NoteDateProps) => {
-    return (
-        <div className="relative w-full fl justify-center">
-            <div className={`flex items-center ${inputClassname}`}>
-                <label htmlFor={`${isStartDate ? 'start' : 'end'}DateInput`} className="cursor-pointer text-2xl">
-                    <BiCalendarAlt />
-                </label>
-                <input
-                    type="date"
-                    disabled={disabled === undefined ? false : disabled}
-                    id={`${isStartDate ? 'start' : 'end'}DateInput`}
-                    onChange={(e) => {
-                        setDate(new Date(e.target.value).getTime());
-                        setTimeout(() => {
-                            refToClick?.current.click();
-                        }, 0);
-                    }}
-                    className={`pl-2 py-3 cursor-pointer`}
-                    value={new Date(date).toLocaleDateString('en-CA')}
-                />
-            </div>
+const NoteDate = ({
+  date,
+  setDate,
+  isStartDate,
+  inputClassname,
+  disabled,
+}: NoteDateProps) => {
+  const showDatePicker = () => {
+    DateTimePickerAndroid.open({
+      value: new Date(date),
+      onChange: (event, newDate) => setDate(newDate?.getTime() || date),
+    });
+  };
 
-            <InputLabel htmlFor={`${isStartDate ? 'start' : 'end'}DateInput`} text={isStartDate ? 'Start' : 'End'} />
-        </div>
-    );
+  return (
+    <View
+      style={[
+        tw` flex-row items-center justify-center relative mb-5 py-2`,
+        { borderBottomWidth: 2, borderColor: "#CFFAFE" },
+      ]}
+    >
+      <TouchableOpacity
+        activeOpacity={0.5}
+        onPress={showDatePicker}
+        style={[tw`flex-row items-center`, inputClassname]}
+      >
+        <Icon name="calendar-o" size={20} style={tw`mr-3`} />
+        <Text style={tw`text-lg`}>
+          {new Date(date).toLocaleDateString("en-CA").replaceAll("-", "/")}
+        </Text>
+      </TouchableOpacity>
+
+      <InputLabel text={isStartDate ? "Start" : "End"} />
+    </View>
+  );
 };
 
 export default NoteDate;
