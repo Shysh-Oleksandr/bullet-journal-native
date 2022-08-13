@@ -3,7 +3,6 @@ import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Text, Touchable, TouchableOpacity, View } from "react-native";
 import { RichEditor } from "react-native-pell-rich-editor";
 
-import Icon from "react-native-vector-icons/OcticonsIcon";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import OcticonsIcon from "react-native-vector-icons/Octicons";
@@ -135,13 +134,13 @@ const NoteForm = ({
   //   }
   // }, [notes, _id]);
 
-  // useEffect(() => {
-  //   setWords(
-  //     content.trim() == "<p></p>" || content === ""
-  //       ? 0
-  //       : getContentWords(content)
-  //   );
-  // }, [content]);
+  useEffect(() => {
+    setWords(
+      content.trim() == "<p></p>" || content === ""
+        ? 0
+        : getContentWords(content)
+    );
+  }, [content]);
 
   const getNote = async (id: string) => {
     try {
@@ -344,7 +343,7 @@ const NoteForm = ({
           placeholder="Title"
           onChange={(text) => setTitle(text)}
         />
-        <View style={tw`flex-row items-center justify-between`}>
+        <View style={tw`flex-row items-center justify-between px-1`}>
           <NoteDate
             date={startDate}
             isStartDate={true}
@@ -352,6 +351,46 @@ const NoteForm = ({
           />
           <OcticonsIcon name="dash" size={35} />
           <NoteDate date={endDate} isStartDate={false} setDate={setEndDate} />
+        </View>
+        <View
+          style={[
+            tw`flex-row items-center justify-between px-1`,
+            { borderColor: "#CFFAFE" },
+          ]}
+        >
+          <View>
+            <Text
+              numberOfLines={1}
+              style={[
+                tw`text-lg mr-4 py-2`,
+                { color: "#0891b2", letterSpacing: 0.7 },
+              ]}
+            >
+              {words} words
+            </Text>
+          </View>
+          <View style={tw`flex-row items-center justify-between pl-1`}>
+            <View>
+              <NoteImportanceInput
+                disabled={saving || isLocked}
+                importance={rating}
+                setImportance={setRating}
+                inputId="noteRatingInput"
+              />
+              <InputLabel text="Importance" />
+            </View>
+            <View style={tw`relative flex-row items-center`}>
+              <View style={tw`text-3xl px-3 py-2`}>
+                <IoniconsIcon
+                  size={28}
+                  color={color}
+                  name="ios-color-palette-sharp"
+                />
+              </View>
+
+              <InputLabel text="Color" />
+            </View>
+          </View>
         </View>
         <NoteContentEditor
           richText={richText}

@@ -1,25 +1,31 @@
 import React from "react";
-import { TextInput } from "react-native";
+import { KeyboardTypeOptions, TextInput } from "react-native";
 import tw from "tailwind-react-native-classnames";
 
 type Props = {
   placeholder: string;
   multiline?: boolean;
+  selectTextOnFocus?: boolean;
   className?: any;
   value: string;
+  keyboardType?: KeyboardTypeOptions;
   onChange: (text: string) => void;
 };
 
 const Input = ({
   placeholder,
   multiline,
+  selectTextOnFocus,
   className,
   onChange,
   value,
+  keyboardType,
 }: Props) => {
   return (
     <TextInput
+      keyboardType={keyboardType || "default"}
       value={value}
+      selectTextOnFocus={selectTextOnFocus}
       onChangeText={onChange}
       placeholderTextColor={"#999ca1"}
       style={[
