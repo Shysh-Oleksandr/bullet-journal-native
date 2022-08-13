@@ -37,7 +37,7 @@ export default function HomeScreen({
       <Notes navigation={navigation} scrollY={scrollY} />
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => navigation.navigate("Edit")}
+        onPress={() => navigation.navigate("Create")}
         style={tw`absolute bottom-4 right-3 bg-blue-500 rounded-full h-16 w-16 p-0 flex-1 justify-center items-center`}
       >
         <Icon name="plus" color={"white"} size={46} />

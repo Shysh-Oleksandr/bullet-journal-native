@@ -28,7 +28,7 @@ const Navbar = ({ navigation }: Props) => {
       </TouchableOpacity>
       <View style={tw`items-center flex-row`}>
         <Icon
-          onPress={() => navigation.navigate("Edit")}
+          onPress={() => navigation.navigate("Create")}
           style={tw`mr-5 pr-2 border-r-2 border-white`}
           name="plus"
           color={"white"}

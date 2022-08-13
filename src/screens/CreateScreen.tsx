@@ -1,20 +1,20 @@
 import { Button, StyleSheet } from "react-native";
+import tw from "../../tailwind";
 import NoteForm from "../components/note/noteForm/NoteForm";
 
 import { Text, View } from "../components/Themed";
 import Navbar from "../shared/Navbar";
 import { RootTabScreenProps } from "../types";
 
-interface Props {
-  navigation: any;
-  noteID: string;
-}
-
-export default function EditScreen({ navigation, noteID }: Props) {
+export default function CreateScreen({
+  navigation,
+}: RootTabScreenProps<"TabTwo">) {
   return (
-    <View>
+    <View style={tw`flex-1`}>
       <Navbar navigation={navigation} />
-      <NoteForm noteID={noteID} navigation={navigation} isShort={false} />
+      <View style={tw`mt-20 flex-1`}>
+        <NoteForm navigation={navigation} isShort={false} />
+      </View>
     </View>
   );
 }

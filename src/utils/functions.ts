@@ -1,4 +1,3 @@
-import DOMPurify from "isomorphic-dompurify";
 import tinycolor from "tinycolor2";
 import ICustomLabel from "../interfaces/customLabel";
 import INote from "../interfaces/note";
@@ -18,8 +17,6 @@ export function shadeColor(color: string, amount: number) {
       )
   );
 }
-
-export const sanitizedData = (data: string): string => DOMPurify.sanitize(data);
 
 export const getDifferentColor = (color: string, amount: number = 20) => {
   const tinyColor = tinycolor(color);

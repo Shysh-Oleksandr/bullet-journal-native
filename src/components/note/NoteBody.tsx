@@ -16,13 +16,27 @@ import NoteInfo from "./NoteInfo";
 import NoteSeparator from "./NoteSeparator";
 
 type Props = {
-  textColor?: string;
+  textColor: string;
   onPress: () => void;
   note: INote;
   isTheSameDate: boolean;
   showImage?: boolean;
   isLastItem: boolean;
 };
+
+function WebDisplay(content: string, textColor: string) {
+  const { width } = useWindowDimensions();
+  return (
+    <RenderHtml
+      contentWidth={width}
+      baseStyle={{ color: textColor, fontSize: 17 }}
+      source={{
+        html:
+          content.length > 150 ? content.slice(0, 150).concat("...") : content,
+      }}
+    />
+  );
+}
 
 const NoteBody = ({
   onPress,
@@ -34,7 +48,6 @@ const NoteBody = ({
 }: Props) => {
   const noteTime =
     dateDiffInDays(new Date(note.startDate), new Date(note.endDate)) + 1;
-  const { width } = useWindowDimensions();
   return (
     <View>
       {!isTheSameDate ? <NoteSeparator /> : null}
@@ -54,18 +67,9 @@ const NoteBody = ({
             >
               {note.title}
             </Text>
-            {note.content && !note.isEndNote ? (
-              <RenderHtml
-                contentWidth={width}
-                baseStyle={{ color: textColor, fontSize: 17 }}
-                source={{
-                  html:
-                    note.content.length > 150
-                      ? note.content.slice(0, 150).concat("...")
-                      : note.content,
-                }}
-              />
-            ) : null}
+            {note.content && !note.isEndNote
+              ? WebDisplay(note.content, textColor)
+              : null}
           </View>
           <View
             style={tw`mt-2 text-lg flex-row items-center justify-between ${
